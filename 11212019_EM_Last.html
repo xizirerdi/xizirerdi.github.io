@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<html>
+<head>
+<title>Build</title>
+
+<script src="https://d3js.org/d3.v3.min.js"></script> 
+
+<style type="text/css">
+
+    hr { 
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-left: auto;
+  margin-right: auto;
+  border-style: solid;
+  border-width: 1px;
+  color: grey;
+} 
+.greeting {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 120%;
+    width:98%;
+    margin: 1%;
+    font-style: oblique;
+    color: black;
+}
+
+.title {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 140%;
+    width:98%;
+    margin: 1%;
+    font-style: bold;
+    color: grey;
+}
+
+.title1 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 160%;
+    width:98%;
+    margin: 1%;
+    font-style: bold;
+    color: white;
+    background-color: black;
+}
+
+.title2 {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 80%;
+    width:98%;
+    margin: 1%;
+    font-style: bold;
+    color: white;
+    background-color: black;
+}
+
+.tinder {
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 120%;
+    font-style:normal;
+    font-weight: bold;
+    width: 98%;
+    margin: 1%;
+    color: red;
+    align-content: center;
+}
+
+.introduction {
+
+    text-align: left;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 80%;
+    color: black;
+    padding: 2%;
+    width: 96%;
+    background:wheat;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+
+.interactiveText1 {
+
+    font-size: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+    padding: 2%;
+    width: 96%;
+    background: white;
+    margin: auto;
+    }
+
+.interactiveText2 {
+
+    font-size: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+    padding: 2%;
+    width: 96%;
+    background: white;
+    margin: auto;
+    }
+
+.cases {
+    font-size: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: black;
+    padding: 2%;
+    width: 100%;
+    background: white;
+    float: left;
+    top: 200px;
+    margin: auto;    
+}
+
+.match {
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    position: relative;
+    top:200px;
+    left:230px;
+    color:black;
+    background: white;
+    border-radius: 10px;
+    border: 3px solid #73AD21;
+    width:100px;
+    text-align: center;
+    pointer-events: none; 
+    visibility: hidden;	
+    }
+
+.grid {
+    position: static;
+    width: 600px;
+    height: 600px;
+    padding: 2%;
+    margin: auto;   
+}
+
+.tooltip {	
+	position: absolute;			
+	text-align: center;			
+    width: 100px;					
+	height: 100px;					
+	padding: 2px;				
+	font: 12px sans-serif;		
+	background: lightsteelblue;	
+	border: 0px;		
+	border-radius: 8px;			
+	pointer-events: none; 		
+   	}
+
+.windowheight {
+    height:100%;
+    width:46%;
+    margin: 2%;
+    display: inline-block;
+}
+
+/* Two Column Layout!! */
+
+.column {
+  float: left;
+  width: 48%;
+  margin: 1%;
+  height: 100%; 
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.columnUneq {
+  float: left;
+  margin: 1%;
+  height: 100%
+}
+
+.left {
+  width: 48%;
+}
+
+.right {
+  width: 48%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.button{
+position: relative;
+background-color: #4CAF50; /* Green */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+}
+
+.graph{
+position: relative;
+background-color: #f44336; /* Red */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+}
+
+.binary{
+position: relative;
+background-color: #f44336; /* Red */
+border: none;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+align: left;
+}
+
+.next{
+position: relative;
+top:0.1px;
+bottom: 0.1px;
+color: white;
+text-align: center;
+background-color: #f44336;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+}
+
+.flash{
+border: #f44336 solid 3px;
+width: 20px;
+height: 20px;
+background-color: #f44336;
+animation-name: example;
+animation-duration: 1s;
+animation-iteration-count: infinite;
+visibility:hidden;}
+
+.transWomen{
+position: relative;
+top:0.1px;
+bottom: 0.1px;
+color: white;
+text-align: center;
+background-color: #f44336;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+}
+
+.seekingWomen{
+position: relative;
+top:0.1px;
+bottom: 0.1px;
+color: white;
+text-align: center;
+background-color: #f44336;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+}
+
+.straightSeekingWomen{
+position: relative;
+top:0.1px;
+bottom: 0.1px;
+color: white;
+text-align: center;
+background-color: #f44336;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+}
+
+.whereYouAre{
+position: relative;
+top:0.1px;
+bottom: 0.1px;
+color: white;
+text-align: center;
+background-color: #f44336;
+display: inline-block;
+font-size: 16px;
+display: inline-flex;
+visibility:hidden;
+}
+
+
+}
+
+@keyframes example {
+from {color: red;}
+to {color: white;}
+}
+
+</style>
+
+<head>
+<div class="title1"> Trans Passing on Tinder </div> <div class="title2"> by Nadine Fattaleh and Emre Ozyetis </div>
+</head>
+
+<body>
+<!--BOARD1-->
+<!--Guide-->
+
+<div class= "title"> 1 </div>
+<div class="row">
+<div class="column" style="background-color:#ffff;">
+<div class="greeting">hi! <br> how do you feel like today?
+</div>
+<div class="introduction">
+    Female <input type="checkbox" id="femaleCB" style="display:true" onclick="whoRu()"> Male <input type="checkbox" id="maleCB" style="display:true" onclick="whoRu()">
+    Non-binary<input type="checkbox" id="binaryCB" style="display:true" onclick="whoRu()"> <br>
+    Cis <input type="checkbox" id="cisCB" style="display:true" onclick="whoRu()"> Trans <input type="checkbox" id="transCB" style="display:true" onclick="whoRu()"> <br>
+    Straight <input type="checkbox" id="str8CB" style="display:true" onclick="whoRu()"> Gay <input type="checkbox" id="gayCB" style="display:true" onclick="whoRu()"><br><br>
+<!--Output-->
+<div class="interactiveText1">
+        So today you feel like a 
+        <div id="straight" style="display:none">straight </div> 
+        <div id="gay" style="display:none">gay</div> 
+        <div id="female" style="display:none">female identified</div> 
+        <div id="male" style="display:none">male identified</div> 
+
+        
+        <div id="cis" style="display:none">cis</div> 
+        <div id="trans" style="display:none">trans</div> <div id="gender" style="display:none">
+        gender</div> 
+        <div id="binary" style="display:none">non-binary </div>
+        person.
+    </div> 
+</div> 
+
+</div>
+
+<!--BOARD2-->
+<!--Guide-->
+<div class="column" style="background-color:#ffff;">
+<div class="greeting">that's good to hear. 
+<br>and who do you feel like meeting today?</div>
+<!--Interaction-->
+
+<div class="introduction">
+
+    Female <input type="checkbox" id="female1CB" style="display:true" onclick="whoRu1()"> Male <input type="checkbox" id="male1CB" style="display:true" onclick="whoRu1()">
+    Non-binary<input type="checkbox" id="binary1CB" style="display:true" onclick="whoRu1()"> <br>
+    
+    Cis <input type="checkbox" id="cis1CB" style="display:true" onclick="whoRu1()"> Trans <input type="checkbox" id="trans1CB" style="display:true" onclick="whoRu1()"><br>
+    Straight <input type="checkbox" id="str81CB" style="display:true" onclick="whoRu1()"> Gay <input type="checkbox" id="gay1CB" style="display:true" onclick="whoRu1()"><br><br>
+
+<!--Output-->
+    <div class="interactiveText2">
+        So you are seeking a 
+        <div id="straight1" style="display:none">straight </div> 
+        <div id="gay1" style="display:none">gay </div>
+        <div id="female1" style="display:none">female identified</div> <div id="male1" style="display:none">male identified</div> 
+        <div id="cis1" style="display:none">cis</div> 
+        <div id="trans1" style="display:none">trans</div> <div id="gender1" style="display:none">
+        gender</div><div id="binary1" style="display:none">non-binary </div> person! 
+    </div> 
+</div> 
+</div>
+</div> 
+<div class="greeting"> there's a slight problem though! you are free to choose whatever you want to be! but because the matching happens along the binary.
+<div class="row">
+<div class="column" style="background-color:#ffff;">
+<div class="greeting"> <br> Tinder thinks you are </div>
+    <!--Output-->
+    <div class="tinder">
+    <div id="woman" style="display:none">a woman</div> <div id="man" style="display:none">a man</div>
+    <div id="gottapick" style="display:none">someone who can't play <br> unless you pick either male or female</div>
+    </div>
+    </div>
+    <!--Guide-->
+<div class="column" style="background-color:#ffff;">
+<div class="greeting"><br>Tinder thinks you are  seeking </div>
+    <!--Output-->
+    <div class="tinder ">
+    <div id="woman1" style="display:none">a woman</div> <div id="man1" style="display:none">a man</div>
+    <div id="gottapick1" style="display:none">someone who can't play <br> unless they pick either male or female</div>
+</div></div></div></div>
+
+<div class="greeting"> there's a chance you might face the consequences of not fulfilling other peoples' expectations regarding your gender! This gets trans people banned on tinder, but in reality it is more serious. </div>
+ 
+<hr>
+
+<div class="title"> 2 </div>
+<div class="row">
+<div class="column" style="background-color:#ffff;">
+<div class = "greeting">
+<p> Trans people on tinder have been getting banned, despite the app's 2016 changes to make the experience more inclusive to people of all gender and sex identities. Facing a lack of data for this phenomenon, we tried to create a simulation to show how tinder’s continued reliance of a binary model for generating potential matches gets trans people banned! </p>
+<p>
+Your tinder profile asks you to list your identity through a list of categories and seek matches who are either male or female. Although you are able to identify through a whole range of inclusive categories, this doesn’t matter, because only what others are seeking will determine who appears as potential matches: either male or female.
+</p>
+<p>
+On a discussion on <a href="https://www.reddit.com/r/Tinder/comments/8tegk3/does_tinder_ban_trans_women/eauhood/" target="_blank">Reddit</a>, SquatPowerHouse clearly outlines his transphobic views, and how they perpetuate trans people getting banned: “If I search for women, you know, real ones with XX chromozomes and if I see something that clearly isn't an XX woman on my feed, I report.” </p>
+<br>
+</div>
+</div>
+<div class="column" style="background-color:#ffff;">
+<br>
+<br>
+<a href="https://www.vice.com/en_us/article/xwvaaz/why-are-trans-people-being-banned-from-tinder" target="_blank">
+<img src="img/Image_1.png" style="width:80%;">
+</a>
+</div>
+</div>
+
+<hr>
+<div class="title"> 3 </div>
+<div class="row">
+<div class="column" style="background-color:#ffff;">
+<img src="img/Trial.gif" margins= "2%" style="width:98%;">
+</div>
+<div class="column" style="background-color:#ffff;"><div class="greeting"> 
+<p> Here is a diagram that demonstrates how SquatPowerHouse uses Tinder. Below you can try the simulation of tinder from the perspective of a trans person. Your task is to avoid getting reported by people like SquatPower. When reported 10 times, you will be banned. </p></div></div></div>
+<hr>
+
+<!--GAME SIMULATION LEFT-->
+
+<div class="row">
+  <div class="columnUneq left" style="background-color:#ffff;">
+  <div class= "grid"> </div>
+  </div>
+
+<!--GAME SIMULATION RIGHT-->
+
+<div class="columnUneq right" style="background-color:#bbbb;">
+
+<div class="greeting">
+    You are a straight trans female identified person. You are seeking a male. Remember, Tinder thinks you are just a woman seeking a man.<br> <br><br><br><br>
+    <div class="button">Show my possible choices</div>
+    <div class="graph">Click here to learn why</div>
+    <div class="binary">Remember how tinder can't really </div>
+    <div class="transWomen">These are all users who were seeking female identified users</div>
+    <div class="seekingWomen">These are all users who were seeking female identified users</div>
+    <div class="straightSeekingWomen">Since you were seeking male identified users, here are the potential matches</div>
+    <div class="whereYouAre">This is where you were on the graph</div>
+
+</div>
+</div>
+</div>
+
+</body>
+
+<script>
+// Vars for drawing SVG
+var margin = {top: 20, right: 50, bottom: 80, left: 50},
+        width = 800 - margin.left - margin.right,
+        height = 700 - margin.top - margin.bottom,
+        gridSize = 10,
+        columns = 20,
+        cScale = d3.scale.linear().domain([-5,6]).range(["red" , "black"]),
+        padding = 50,
+        svg = d3.select(".grid").append("svg").attr("width",width).attr("height", height),
+        radius = 10
+
+// Vars for data to use 
+var tries = 0
+var matches = 0
+
+//DATA LOAD   
+ d3.csv("RDP.csv", function(data) {
+        console.log(data)
+        var binnedData = {}
+        var binSize = 1
+        
+    for (var i in data) { 
+        
+        // data[i].value returns the value attached to the key "value" 
+        // (this is the key-name we gave in our dataset) 
+        // since binSize is 1, we are giving a binNumber to every value in the range
+        // and then, we are attributing a key "bin" to data[i] with the value binNumber
+
+            var binNumber = Math.floor(data[i].value / binSize)
+            data[i].bin = binNumber
+            data[i].imgLink = data[i].URL
+
+        //now we have keys "value" and "bin" for data[i]
+        // using the keys that exist in binnedData, we can check whether 
+        // binNumber already exists in the library;
+
+        // if the binNumber already exits in binnedDatai 
+        // push into that array this data[i] too, 
+        // get the new length of the array, and assign this to
+        // data[i] with the new key binOrder
+
+            if(Object.keys(binnedData).indexOf("_" + binNumber) > -1) { 
+            binnedData["_" + binNumber].push(data[i])
+            data[i].binOrder = binnedData["_" + binNumber].length 
+         
+
+        // if binNumber is not already in binnedData, 
+        // the binNumber at hand is pushed into the library binnedData
+        // with a new key "binOrder"
+        // the new length of the library is added 
+        // to data[i]
+    
+            } else { 
+            binnedData["_" + binNumber] = []
+            binnedData["_" + binNumber].push(data[i])
+            data[i].binOrder = binnedData["_" + binNumber].length 
+            }
+
+    //genders assigned 
+        
+            if (binNumber > 0) {
+        //female
+            data[i].binAssigned = 1
+            } else {
+        //male
+            data[i].binAssigned = 0
+            }
+//ASKJIA Here in the instances when person is bi, i want data[i].binSeeking = [1,0] to be able to process both when binSeeking == 0 and binSeeking == 1
+            if (binNumber >= 6) {
+        //cis woman and straight
+            data[i].binIdentified = 1
+            data[i].binSeeking = 0
+            data[i].identity = "Cis <br> straight <br> female>"
+            data[i].binOrientation = 8
+            } else if (binNumber >= 4 && binNumber <6) {
+        //cis woman and bi(only if...so gay at the moment)
+            data[i].binIdentified = 1
+            data[i].binSeeking = 1
+            data[i].identity = "Cis <br> gay <br> female>"
+            data[i].binOrientation = 7
+            } else if (binNumber >= 3 && binNumber <4) {
+        //trans straight male 
+            data[i].binIdentified = 0
+            data[i].binSeeking = 1
+            data[i].identity = "Trans <br> straight <br> male"
+            data[i].binOrientation = 6
+            } else if (binNumber >=1 && binNumber <3) {
+        //trans gay female
+            data[i].binIdentified = 0
+            data[i].binSeeking = 0
+            data[i].identity = "Trans <br> gay <br> female"
+            data[i].binOrientation = 5
+            } else if (binNumber >= 0 && binNumber < 1) {
+        //cis and gay male
+            data[i].binIdentified = 1
+            data[i].binSeeking = 1
+            data[i].binOrientation = 4
+            data[i].identity = "Trans <br> gay <br> male"
+            } else if (binNumber >= -3 && binNumber <0) {
+        //cis0 and gay male
+            data[i].binIdentified = 1
+            data[i].binSeeking = 0
+            data[i].binOrientation = 3
+            data[i].identity = "Trans <br> straight <br> female"
+            } else if (binNumber >= -5 && binNumber <-3) {  
+        //cis0 and gay male
+            data[i].binIdentified = 0
+            data[i].binSeeking = 0
+            data[i].binOrientation = 2
+            data[i].identity = "Cis <br> gay <br> male"
+            } else if (binNumber <-5) {  
+        //cis0 and gay male
+            data[i].binIdentified = 0
+            data[i].binSeeking = 1
+            data[i].binOrientation = 1
+            data[i].identity = "Cis <br> straight <br> male"
+            }  
+    }
+    d3.shuffle(data)
+
+    //DATA MANIPULATED, SHUFFLED AND READY TO BE USED
+    svg.selectAll("circle")
+        .data(data)
+        .enter()
+        .append("circle")
+        .attr("id", function(d,i){
+            return i
+        })
+        .attr("r", radius)
+        .attr("cx", function(d,i) {  
+            //console.log((i%columns)*gridSize)             
+            return (padding + (i%columns)*gridSize)*2 
+        })
+        .attr("cy", function(d,i) {
+            return (padding + Math.floor(i/columns)*gridSize)*2
+        })
+        .attr("opacity", 1)
+        .attr("fill", "black")
+        .on("click",function(d,i){
+            d3.selectAll(".match").style("visibility", "visible")
+        })
+
+    d3.select(".button")
+         .on("click", function(){
+        
+            matchThem(data)
+            d3.select(this).html("Here are your potential matches. Click them to see if you've got a chance.").attr("id", "transition2").style("pointer-events", "none")
+         })
+
+    d3.select(".graph")
+         .on("click", function(){
+            graphThem(data)
+            d3.select(".graph").html("On a binary-distributed graph, the ones who were likely to report and eventually get you banned are the red ones")
+            .style("visibility", "visible")
+            .style("text-align", "left")
+            .style("padding", "15px 32px")
+            .on("click", function(d,i){
+                d3.select(this).style("background-color", "#4CAF50")
+                d3.select(".graph").html("Remember, no matter how you feel or what you seek for, tinder assumes you are one or the other in the binary world of men and women")
+                .style("pointer-events", "none")
+                d3.select(".binary").style("visibility", "visible").html("Click here to check out how tinder assumes the binary distribution to be")
+            })
+         })
+
+    d3.select(".binary")
+         .on("click", function(){
+            binaryThem(data)
+            d3.select(".binary").html("According to this model, female-identified and male-identified users should be homogeneously seperated from one another")
+                .style("text-align", "left")
+            .on("click", function(d,i){
+                d3.select(this).style("background-color", "#4CAF50")
+                .style("text-align", "left")
+                .style("padding", "15px 32px")
+                .style("pointer-events", "none")
+                transFemaleThem(data)
+                d3.select(".transWomen").style("visibility", "visible")
+                .html("Click to see those who were seeking female identified people, like yourself.")
+                .style("text-align", "left")
+                .style("padding", "15px 32px")
+            })
+        })
+
+    d3.select(".transWomen")
+         .on("click", function(){
+            seekingFemaleThem(data)
+            d3.select(this)
+                .style("pointer-events", "none")
+                .html("Sexual orientation is not distributed as evenly as bimodal distribution implies.")
+                .style("background-color", "#4CAF50")
+                .style("text-align", "left")
+                .style("padding", "15px 32px")
+            d3.select(".seekingWomen").style("visibility", "visible")
+                .html("Click to see those which of those were male identified, as you were seeking.")
+                .style("text-align", "left")
+                .style("padding", "15px 32px")
+         })
+
+    d3.select(".seekingWomen")
+         .on("click", function(){
+            whoYouSeeking(data)
+             d3.select(this)
+                .style("text-align", "left")
+                .style("padding", "15px 32px")
+                .html("Also, there are those who do not conform to what their place on the bimodal distribution graph suggessts.")
+                .style("background-color", "#4CAF50")
+            d3.select(".straightSeekingWomen").style("visibility", "visible")
+            .style("text-align", "left")
+            .style("padding", "15px 32px")
+            // .html("On this graph, the further you are apart from one another, more likely you will survive the gender that is reduced to a binary. Especially it is harder for a trans person to pass if they match with a cis person like those")
+         })
+
+    d3.select(".straightSeekingWomen")
+         .on("click", function(){
+            cisTerror(data)
+            //d3.select(".circle#53").attr("fill","gold")
+            d3.select(this).style("pointer-events", "none").style("background-color", "#4CAF50")
+            d3.select(".whereYouAre").style("visibility", "visible")
+            .style("text-align", "left")
+            .style("padding", "15px 32px")
+            .html("This is where you, a straight female trans person, are on the distribution. If only you knew how to avoid being reported!!!")
+         })
+
+    d3.select(".whereYouAre")
+         .on("click", function(){
+            d3.select(this).style("pointer-events", "none").html("As you might have noticed, we haven't mentioned about bisexuals or asexuals. It's because for the sake of having this simulation, we have been very reductive. And pretty much, this is why science reduces sex to a binary distributed model: it's just too complicated.").style("background-color", "#4CAF50")
+            udpateGraph(data)
+            d3.select("#transition2").style("visibility", "hidden")
+
+         })
+    
+
+console.log(data)
+})
+
+//DATA LOAD OVER
+
+//FUNCTIONS HERE
+function graphThem(data) {
+    d3.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .attr("r", radius)
+                .attr("cx", function(d,i) {             
+                    return 5 * padding + (d.bin * 20)
+                })
+                .attr("cy", function(d,i) {
+                    return height - ((d.binOrder * 20))
+                })
+                .style("opacity", 1)
+                
+}
+
+
+function matchThem(data) {
+        d3.selectAll("circle")
+        .data(data)
+        .transition(100)
+        .delay(function (d,i) {
+                return i*10
+        })
+        .style("opacity", function (d){
+                if (d.binSeeking == 0 || d.binIdentified == 1 ) { 
+                return 0.1 } 
+                })
+        .attr("fill", "black")
+        d3.selectAll("circle")
+        .on("click",function(d,i){
+                if (d.binIdentified == 0 && d.binSeeking ==1) {
+                    d3.select(this)
+                    if (d.binAssigned != d.binIdentified) {
+                        matches = matches + 1
+                        //d3.select("#output").html("yes, you have" + matches + " matches")
+                        d3.select(this).attr("fill","green")
+                    }
+                    else if (d.binAssigned == d.binIdentified) {
+                    tries = tries + 1
+                        if (tries > 9) {
+                            //d3.select("#output").html("you were banned no more tries!!!!!")
+                            d3.select("#transition2").html("You got banned").style("visibility", "visible").style("background-color", "#f44336")
+                            d3.select(".graph").html("Click here to learn why").style("visibility", "visible")
+                            
+                        }
+                        else { 
+                        //d3.select("#output").html("no, " + (10-tries) + " tries left")
+                        d3.select(this).attr("fill","red")
+                        }
+                    } 
+                }
+        })
+}
+        
+function udpateGraph(data){
+        d3.selectAll("circle")
+            .data(data)
+            .transition(100)
+            .delay(function (d,i) {
+                    return i*10
+                })
+            .attr("r", radius)
+            .attr("cx", function(d,i) {             
+                    return 5 * padding + (d.bin * 20)
+                })
+            .attr("cy", function(d,i) {
+                    return height - ((d.binOrder * 20))
+                })
+            . style("opacity", 1.0)
+            .attr("fill", function(d,i){
+            if (d.binOrientation==8) {
+                return "#7bccc2"
+            } else if (d.binOrientation==7){
+                return "#bfb7da"
+            } else if (d.binOrientation==6){
+                return "#ec7066"
+            } else if (d.binOrientation==5){
+                return "#f7f4b3"
+            } else if (d.binOrientation==4){
+                return "#f4c6dd"
+            } else if (d.binOrientation==3){
+                return "#a6d168"
+            }else if (d.binOrientation==2){
+                return "#f4b154"
+            } else {return "#72b3d7"}
+        })
+        
+}  
+
+function binaryThem(data){
+    svg.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .attr("fill", function(d,i) {
+                    if (d.binAssigned == 1) {
+                        return "#cc75d1"
+                    }   else { 
+                        return "#72b3d7"
+                    }            
+                })
+}
+
+
+function transFemaleThem(data){
+    svg.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .attr("fill", "black")
+                .style("opacity", function(d,i) {
+                    if (d.binAssigned == 1) {
+                        return 0.3
+                    } else {return 1}              
+                })
+}
+
+function seekingFemaleThem(data){
+    svg.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .style("opacity", function(d,i) {
+                    if (d.binSeeking == 1) {
+                        return 1
+                    }  else {return 0.3}            
+                })
+}
+
+function whoYouSeeking(data){
+    svg.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .style("opacity", function(d,i) {
+                    if (d.binSeeking == 1 && d.binIdentified ==0) {
+                        return 1
+                    } else {return 0.3}              
+                })
+}
+
+function cisTerror(data){
+    svg.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .style("opacity", function(d,i) {
+                    if (d.binOrientation == 4 ) {
+                        return 1
+                    } else {return 0.3}               
+                })
+}
+
+function whereYouAre(data){
+    svg.selectAll("circle")
+                .data(data)
+                .transition(1000)
+                .delay(function (d,i) {
+                    return i*10
+                })
+                .style("opacity", function(d,i) {
+                    if (d.identity <-5) {
+                        return 1
+                    } else {return 0.3}               
+                })
+    
+}
+
+
+
+        //FUNCTIONS HERE
+function whoRu(d){
+
+    var femaleCB = document.getElementById("femaleCB");
+    var maleCB = document.getElementById("maleCB");
+    var binaryCB = document.getElementById("binaryCB");
+    var cisCB = document.getElementById("cisCB");
+    var transCB = document.getElementById("transCB");
+    var str8CB = document.getElementById("str8CB");
+    var gayCB = document.getElementById("gayCB");
+    var gender = document.getElementById("gender");
+    var woman = document.getElementById("woman");
+    var man = document.getElementById("man");
+    var gottapick = document.getElementById("gottapick");
+
+
+
+    if (maleCB.checked == true){
+    femaleCB.style.display = "none"
+    male.style.display = "inline"
+    binaryCB.style.display = "none"
+    man.style.display ="inline"
+    gottapick.style.display="none"
+    } else if (femaleCB.checked == true){
+        male.style.display = "none"
+        female.style.display = "inline"
+        maleCB.style.display = "none"
+        binaryCB.style.display = "none"
+        man.style.display ="none"
+        woman.style.display ="inline"
+        gottapick.style.display="none"
+    } else if (binaryCB.checked == true) {
+        male.style.display = "none"
+        binary.style.display = "inline"
+        femaleCB.style.display = "none"
+        maleCB.style.display = "none"
+        female.style.display = "none"
+        man.style.display ="none"
+        woman.style.display ="none"
+        gottapick.style.display="inline"
+    } else { 
+        binaryCB.style.display = "inline"
+        femaleCB.style.display = "inline"
+        maleCB.style.display = "inline" 
+        male.style.display = "none"
+        female.style.display = "none"
+        binary.style.display = "none"
+        transCB.style.display = "inline"
+        cisCB.style.display = "inline"
+        man.style.display ="none"
+        woman.style.display ="none"
+        gottapick.style.display="inline"}
+
+
+    if (cisCB.checked == true){
+    //gender.style.display = "inline";
+    transCB.style.display = "none";
+    cis.style.display = "inline";
+    } else {
+    //gender.style.display = "none";
+    transCB.style.display = "inline";
+    cis.style.display = "none";
+    }
+    if (str8CB.checked == true){
+    gayCB.style.display = "none";
+    straight.style.display = "inline";
+    } else {
+    gayCB.style.display = "inline";
+    straight.style.display = "none";
+    }
+    if (gayCB.checked == true){
+    str8CB.style.display = "none";
+    gay.style.display = "inline";
+    } else {
+    str8CB.style.display = "inline";
+    gay.style.display = "none";
+    }
+    if (transCB.checked == true){
+    //gender.style.display = "inline";
+    cisCB.style.display = "none";
+    trans.style.display = "inline";
+    } else {
+    //gender.style.display = "none";
+    cisCB.style.display = "inline";
+    trans.style.display = "none";
+    }
+    if (transCB.checked == true || cisCB.checked == true) {
+    gender.style.display = "inline";
+    }else {
+    gender.style.display = "none"
+    }  
+}
+function whoRu1(d){
+
+
+var female1CB = document.getElementById("female1CB");
+var male1CB = document.getElementById("male1CB");
+var binary1CB = document.getElementById("binary1CB");
+var cis1CB = document.getElementById("cis1CB");
+var trans1CB = document.getElementById("trans1CB");
+var str81CB = document.getElementById("str81CB");
+var gay1CB = document.getElementById("gay1CB");
+var gender1 = document.getElementById("gender1");
+var woman1 = document.getElementById("woman1");
+var man1 = document.getElementById("man1");
+var gottapick1 = document.getElementById("gottapick1");
+
+    if (male1CB.checked == true){
+    female1CB.style.display = "none"
+    male1.style.display = "inline"
+    binary1CB.style.display = "none"
+    man1.style.display ="inline"
+    gottapick1.style.display="none"
+    } else if (female1CB.checked == true){
+        male1.style.display = "none"
+        female1.style.display = "inline"
+        male1CB.style.display = "none"
+        binary1CB.style.display = "none"
+        man1.style.display ="none"
+        gottapick1.style.display="none"
+        woman1.style.display="inline"
+    } else if (binary1CB.checked == true) {
+        male1.style.display = "none"
+        binary1.style.display = "inline"
+        female1CB.style.display = "none"
+        male1CB.style.display = "none"
+        female1.style.display = "none"
+        man1.style.display ="none"
+        gottapick1.style.display="inline"
+        woman1.style.display="none"
+    } else { 
+        binary1CB.style.display = "inline"
+        female1CB.style.display = "inline"
+        male1CB.style.display = "inline" 
+        male1.style.display = "none"
+        female1.style.display = "none"
+        binary1.style.display = "none"
+        trans1CB.style.display = "inline"
+        cis1CB.style.display = "inline"
+        man1.style.display ="none"
+        gottapick1.style.display="inline"
+        woman1.style.display="none"}
+
+    if (cis1CB.checked == true){
+    //gender.style.display = "inline";
+    trans1CB.style.display = "none";
+    cis1.style.display = "inline";
+    } else {
+    //gender.style.display = "none";
+    trans1CB.style.display = "inline";
+    cis1.style.display = "none";
+    }
+
+    if (str81CB.checked == true){
+    gay1CB.style.display = "none";
+    straight1.style.display = "inline";
+    } else {
+    gay1CB.style.display = "inline";
+    straight1.style.display = "none";
+    }
+
+    if (gay1CB.checked == true){
+    str81CB.style.display = "none";
+    gay1.style.display = "inline";
+    } else {
+    str81CB.style.display = "inline";
+    gay1.style.display = "none";
+    }
+    if (trans1CB.checked == true){
+    //gender.style.display = "inline";
+    cis1CB.style.display = "none";
+    trans1.style.display = "inline";
+    } else {
+    //gender.style.display = "none";
+    cis1CB.style.display = "inline";
+    trans1.style.display = "none";
+    }
+    if (trans1CB.checked == true || cis1CB.checked == true) {
+    gender1.style.display = "inline";
+    }else {
+    gender1.style.display = "none"
+    }  
+}
+
+
+</script>
